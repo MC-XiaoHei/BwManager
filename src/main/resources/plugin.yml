@@ -1,0 +1,5 @@
+name: BwManager
+version: '${version}'
+main: cn.xor7.xiaohei.bwmanager.BwManager
+load: POSTWORLD
+depend: [ BedWars1058, Parties ]
