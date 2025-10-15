@@ -7,3 +7,6 @@ commands:
   bwteam:
     description:
     usage: /bwteam <[team-id]|list|info>
+  bwcfg:
+    description:
+    usage: /bwcfg reload

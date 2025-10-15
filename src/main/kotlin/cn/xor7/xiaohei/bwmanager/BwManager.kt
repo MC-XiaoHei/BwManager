@@ -1,5 +1,6 @@
 package cn.xor7.xiaohei.bwmanager
 
+import cn.xor7.xiaohei.bwmanager.commands.ConfigCommand
 import cn.xor7.xiaohei.bwmanager.commands.TeamCommand
 import cn.xor7.xiaohei.bwmanager.listeners.LobbyListener
 import cn.xor7.xiaohei.bwmanager.party.TeamInfo
@@ -21,5 +22,6 @@ class BwManager : JavaPlugin() {
         TeamInfo.loadTeamInfo()
         Bukkit.getPluginManager().registerEvents(LobbyListener, this)
         getCommand("bwteam").executor = TeamCommand
+        getCommand("bwcfg").executor = ConfigCommand
     }
 }
