@@ -19,8 +19,7 @@ object TeamInfo {
             teamInfo[id] = Team(id.toString(), leader, players)
         }
 
-        println("已从CSV加载 ${teamInfo.size} 个团队信息。")
-        teamInfo.forEach { (t, u) -> println("团队 $t (队长 ${u.leader}): ${u.players.joinToString()}") }
+        println("Loaded ${teamInfo.size} teams, each with $playerNumInTeam players.")
+        teamInfo.forEach { (t, u) -> println("Team $t (Leader ${u.leader.name}): ${u.players.joinToString(transform = TeamMember::name)}") }
     }
-
 }

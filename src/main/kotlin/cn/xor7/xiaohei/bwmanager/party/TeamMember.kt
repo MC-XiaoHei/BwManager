@@ -6,9 +6,12 @@ import com.alessiodp.parties.api.interfaces.PartyPlayer
 import org.bukkit.entity.Player
 import java.util.UUID
 
-@JvmInline
-value class TeamMember(val uuid: UUID) {
-    constructor(uuidStr: String) : this(UUID.fromString(uuidStr))
+data class TeamMember(val uuid: UUID, val name: String) {
+    constructor(dataStr: String) : this(
+        UUID.fromString(dataStr.split("/")[1]),
+        dataStr.split("/")[0],
+    )
+
     val player: Player? get() = plugin.server.getPlayer(uuid)
     val partyPlayer: PartyPlayer get() = parties.getPartyPlayer(uuid)!!
 }
