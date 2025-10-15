@@ -14,7 +14,7 @@ object TeamCommand : CommandExecutor {
     ): Boolean {
         if (args.isEmpty()) {
             sender.sendMessage("§c用法: /bwteam <[team-id]|list|info>")
-            return false
+            return true
         }
         when (args[0]) {
             "info" -> {
@@ -34,12 +34,12 @@ object TeamCommand : CommandExecutor {
                 val teamId = args[0].toIntOrNull()
                 if (teamId == null) {
                     sender.sendMessage("§c无效的队伍号: ${args[0]}")
-                    return false
+                    return true
                 }
                 val team = TeamInfo.teamInfo[teamId]
                 if (team == null) {
                     sender.sendMessage("§c未找到队伍 $teamId")
-                    return false
+                    return true
                 }
                 sender.sendMessage(team.getDisplayInfo())
             }

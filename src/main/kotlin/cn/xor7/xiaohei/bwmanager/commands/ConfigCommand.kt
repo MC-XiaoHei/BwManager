@@ -23,6 +23,7 @@ object ConfigCommand : CommandExecutor {
                 return true
             }
         }
-        return false
+        sender.sendMessage("§c用法：/bwcfg reload")
+        return true
     }
 }

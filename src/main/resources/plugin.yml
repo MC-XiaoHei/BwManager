@@ -10,3 +10,6 @@ commands:
   bwcfg:
     description:
     usage: /bwcfg reload
+  bwgame:
+    description:
+    usage: /bwgame <start|stop> <arena> <teamId1> <teamId2> [teamId3...]

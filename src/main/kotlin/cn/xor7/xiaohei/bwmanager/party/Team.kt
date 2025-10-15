@@ -23,6 +23,8 @@ data class Team(
         teamUidMap[party.id] = this
     }
 
+    fun getUnreadyPlayers(): List<TeamMember> = players.filter { it.player?.isOnline != true }
+
     fun getDisplayInfo(): String = """
         §a-------- 团队信息 --------
         §a队号: §e$id§a
