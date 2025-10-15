@@ -10,13 +10,6 @@ object LobbyListener : Listener {
     fun onPlayerJoin(event: PlayerJoinEvent) {
         val player = event.player
         val team = player.getTeam() ?: return
-        val msg = """
-            §a-------- 团队信息 --------
-            §a队号：§e${team.id}§a
-            §a队长：§e${team.leader.name}§a
-            §a队员：
-            ${team.players.filter { it != team.leader }.joinToString("\n") { "* ${it.name}" }}
-        """.trimIndent()
-        player.sendMessage(msg)
+        player.sendMessage(team.getDisplayInfo())
     }
 }

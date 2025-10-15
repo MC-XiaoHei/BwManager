@@ -14,4 +14,10 @@ data class TeamMember(val uuid: UUID, val name: String) {
 
     val player: Player? get() = plugin.server.getPlayer(uuid)
     val partyPlayer: PartyPlayer get() = parties.getPartyPlayer(uuid)!!
+
+    fun getDisplayInfo(): String = if (player != null) {
+        "§a${name}"
+    } else {
+        "§c${name}"
+    }
 }

@@ -3,3 +3,7 @@ version: '${version}'
 main: cn.xor7.xiaohei.bwmanager.BwManager
 load: POSTWORLD
 depend: [ BedWars1058, Parties ]
+commands:
+  bwteam:
+    description:
+    usage: /bwteam <[team-id]|list|info>

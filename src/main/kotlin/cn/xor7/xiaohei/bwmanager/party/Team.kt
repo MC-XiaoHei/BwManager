@@ -22,6 +22,14 @@ data class Team(
         players.map(TeamMember::partyPlayer).forEach(party::addMember)
         teamUidMap[party.id] = this
     }
+
+    fun getDisplayInfo(): String = """
+        §a-------- 团队信息 --------
+        §a队号: §e$id§a
+        §a队长: ${leader.getDisplayInfo()}§a
+        §a队员: 
+        ${players.filter { it != leader }.joinToString("\n") { "§e * ${it.getDisplayInfo()}" }}
+    """.trimIndent()
 }
 
 fun Player.getTeam(): Team? = teamUidMap[parties.getPartyPlayer(this.uniqueId)?.partyId]
