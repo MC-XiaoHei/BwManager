@@ -26,7 +26,7 @@ object TeamCommand : CommandExecutor {
             "list" -> {
                 sender.sendMessage("§a-------- 团队列表 --------")
                 TeamInfo.teamInfo.forEach { (id, team) ->
-                    sender.sendMessage("§a队号 §e$id§a 队长 §e${team.leader.name}§a 队员 ${team.players.joinToString(transform = cn.xor7.xiaohei.bwmanager.party.TeamMember::name)}")
+                    sender.sendMessage("§a队号 §e$id§a 队长 §e${team.leader.name}§a")
                 }
             }
 
