@@ -11,6 +11,8 @@ import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
 
 object GameCommand : CommandExecutor {
+    const val USAGE = "§c用法：/bwgame <start|stop> <arena> [<teamId1> <teamId2> [teamId3...]]"
+
     override fun onCommand(
         sender: CommandSender,
         command: Command,
@@ -18,7 +20,7 @@ object GameCommand : CommandExecutor {
         args: Array<out String>,
     ): Boolean {
         if (args.size < 2) {
-            sender.sendMessage("§c用法：/bwgame <start|stop> <arena> <teamId1> <teamId2> [teamId3...]")
+            sender.sendMessage(USAGE)
             return true
         }
         val action = args[0]
@@ -31,7 +33,7 @@ object GameCommand : CommandExecutor {
         when (action) {
             "start" -> {
                 if (teamIds.size < 2) {
-                    sender.sendMessage("§c用法：/bwgame start <arena> <teamId1> <teamId2> [teamId3...]")
+                    sender.sendMessage(USAGE)
                     return true
                 }
                 if (arena.status != GameState.waiting) {

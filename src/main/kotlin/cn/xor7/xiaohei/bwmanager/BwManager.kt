@@ -2,6 +2,7 @@ package cn.xor7.xiaohei.bwmanager
 
 import cn.xor7.xiaohei.bwmanager.commands.ConfigCommand
 import cn.xor7.xiaohei.bwmanager.commands.GameCommand
+import cn.xor7.xiaohei.bwmanager.commands.SpectatorCommand
 import cn.xor7.xiaohei.bwmanager.commands.TeamCommand
 import cn.xor7.xiaohei.bwmanager.listeners.LobbyListener
 import cn.xor7.xiaohei.bwmanager.party.TeamInfo
@@ -26,6 +27,7 @@ class BwManager : JavaPlugin() {
         TeamCommand.register("bwteam")
         ConfigCommand.register("bwcfg")
         GameCommand.register("bwgame")
+        SpectatorCommand.register("bwspe")
     }
 
     fun CommandExecutor.register(name: String) {

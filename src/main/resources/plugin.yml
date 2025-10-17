@@ -5,11 +5,10 @@ load: POSTWORLD
 depend: [ BedWars1058, Parties ]
 commands:
   bwteam:
-    description:
-    usage: /bwteam <[team-id]|list|info>
+    permission: bwmanager.command.bwteam
   bwcfg:
-    description:
-    usage: /bwcfg reload
+    permission: bwmanager.command.bwcfg
   bwgame:
-    description:
-    usage: /bwgame <start|stop> <arena> <teamId1> <teamId2> [teamId3...]
+    permission: bwmanager.command.bwgame
+  bwspe:
+    permission: bwmanager.command.bwspe
