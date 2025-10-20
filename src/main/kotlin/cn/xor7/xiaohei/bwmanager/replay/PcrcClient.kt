@@ -58,7 +58,7 @@ class PcrcClient(private val name: String) {
       "store_token": false,
       "address": "localhost",
       "port": $serverPort,
-      "server_name": "$name",
+      "server_name": "SDTBU-Bedwars-$name",
       "initial_version": "1.12.2",
     
       "__3__": "-------- PCRC Control --------",

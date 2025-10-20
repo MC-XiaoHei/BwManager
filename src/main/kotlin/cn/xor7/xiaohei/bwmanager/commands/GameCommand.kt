@@ -94,7 +94,7 @@ object GameCommand : CommandExecutor {
             .flatten()
             .mapNotNull(TeamMember::player)
             .forEach { arena.addPlayer(it, true) }
-        val client = PcrcClient(teamIds.joinToString(separator = "."))
+        val client = PcrcClient(teamIds.joinToString(separator = "-"))
         ReplayListener.arenas[client.playerName] = arena
         ReplayListener.clients[client.playerName] = client
         client.start()
