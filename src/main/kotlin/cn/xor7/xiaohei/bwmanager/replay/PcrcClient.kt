@@ -24,6 +24,9 @@ class PcrcClient(private val name: String) {
             name = name,
             workDir = workingDir,
         )
+    }
+
+    fun start() {
         pcrcProcess.writeLine("start")
         clients += this
     }
