@@ -5,6 +5,7 @@ import cn.xor7.xiaohei.bwmanager.party.Team
 import cn.xor7.xiaohei.bwmanager.party.TeamInfo
 import cn.xor7.xiaohei.bwmanager.party.TeamInfo.playerNumInTeam
 import cn.xor7.xiaohei.bwmanager.party.TeamMember
+import cn.xor7.xiaohei.bwmanager.replay.PcrcClient
 import com.andrei1058.bedwars.api.arena.GameState
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
@@ -75,6 +76,7 @@ object GameCommand : CommandExecutor {
                     .flatten()
                     .mapNotNull(TeamMember::player)
                     .forEach { arena.addPlayer(it, true) }
+                PcrcClient(teamIds.joinToString(separator = "."))
             }
 
             "stop" -> {
