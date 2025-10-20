@@ -7,6 +7,7 @@ import cn.xor7.xiaohei.bwmanager.commands.TeamCommand
 import cn.xor7.xiaohei.bwmanager.listeners.GlobalListener
 import cn.xor7.xiaohei.bwmanager.party.TeamInfo
 import cn.xor7.xiaohei.bwmanager.replay.PcrcClient
+import cn.xor7.xiaohei.bwmanager.replay.clients
 import cn.xor7.xiaohei.bwmanager.replay.processes
 import com.alessiodp.parties.api.Parties
 import com.alessiodp.parties.api.interfaces.PartiesAPI
@@ -39,6 +40,7 @@ class BwManager : JavaPlugin() {
 
     override fun onDisable() {
         println(processes.size)
+        clients.forEach { it.stopSync() }
         processes.forEach { it.destroy() }
     }
 }

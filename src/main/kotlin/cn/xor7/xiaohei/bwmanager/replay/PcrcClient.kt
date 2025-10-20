@@ -1,9 +1,8 @@
 package cn.xor7.xiaohei.bwmanager.replay
 
-import cn.xor7.xiaohei.bwmanager.plugin
 import org.bukkit.Bukkit
-import org.bukkit.scheduler.BukkitRunnable
-import org.bukkit.scheduler.BukkitTask
+
+val clients = mutableListOf<PcrcClient>()
 
 class PcrcClient(private val name: String) {
     private val serverPort = Bukkit.getServer().port
@@ -26,16 +25,19 @@ class PcrcClient(private val name: String) {
             workDir = workingDir,
         )
         pcrcProcess.writeLine("start")
+        clients += this
     }
 
-    fun stop(): BukkitTask = object : BukkitRunnable() {
-        override fun run() {
-            processes -= pcrcProcess
-            pcrcProcess.writeLine("stop")
-            pcrcProcess.writeLine("exit")
-            pcrcProcess.waitForExit()
-        }
-    }.runTask(plugin)
+    fun stop() {
+        processes -= pcrcProcess
+        pcrcProcess.writeLine("stop")
+        pcrcProcess.writeLine("exit")
+    }
+
+    fun stopSync() {
+        stop()
+        pcrcProcess.waitForExit()
+    }
 
 
     private fun buildConfigJson() = """{
@@ -63,7 +65,7 @@ class PcrcClient(private val name: String) {
       "delay_before_afk_second": 15,
       "afk_ignore_spectator": false,
       "record_packets_when_afk": true,
-      "auto_relogin": true,
+      "auto_relogin": false,
       "auto_relogin_attempts": 5,
       "chat_spam_protect": true,
       "command_prefix": "!!PCRC",
