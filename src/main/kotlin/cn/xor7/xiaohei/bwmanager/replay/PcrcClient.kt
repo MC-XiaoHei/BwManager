@@ -59,7 +59,7 @@ class PcrcClient(private val name: String) {
       "address": "localhost",
       "port": $serverPort,
       "server_name": "SDTBU-Bedwars-$name",
-      "initial_version": "1.12.2",
+      "initial_version": "1.18.2",
     
       "__3__": "-------- PCRC Control --------",
       "file_size_limit_mb": 2048,

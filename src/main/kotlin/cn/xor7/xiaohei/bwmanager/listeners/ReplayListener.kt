@@ -1,6 +1,7 @@
 package cn.xor7.xiaohei.bwmanager.listeners
 
 import cn.xor7.xiaohei.bwmanager.replay.PcrcClient
+import cn.xor7.xiaohei.bwmanager.runTaskLater
 import com.andrei1058.bedwars.api.arena.GameState
 import com.andrei1058.bedwars.api.arena.IArena
 import com.andrei1058.bedwars.api.events.gameplay.GameStateChangeEvent
@@ -18,16 +19,17 @@ object ReplayListener : Listener {
         val player = event.player
         val name = player.name
         val arena = arenas[name] ?: return
-        arena.addSpectator(player, false, arena.reSpawnLocation)
+        runTaskLater(20) {
+            arena.addSpectator(player, false, arena.waitingLocation)
+            player.teleport(arena.waitingLocation)
+        }
     }
 
     @EventHandler
     fun onPlayerQuit(event: PlayerQuitEvent) {
         val player = event.player
         val name = player.name
-        val client = clients[name]
-        val arena = arenas[name]
-        if (client == null || arena == null) return
+        val client = clients[name] ?: return
         client.stop()
         clients -= name
         arenas -= name

@@ -30,7 +30,7 @@ object SpectatorCommand : CommandExecutor {
             sender.sendMessage("§c找不到名为 $arenaName 的竞技场")
             return true
         }
-        arena.addSpectator(player, false, arena.reSpawnLocation)
+        arena.addSpectator(player, false, arena.waitingLocation)
         return true
     }
 }
