@@ -37,14 +37,17 @@ object ReplayListener : Listener {
 
     @EventHandler
     fun onGameStateChange(event: GameStateChangeEvent) {
-        if (event.newState in arrayOf(GameState.starting, GameState.playing)) {
-            return
-        }
         arenas.filter { event.arena.world.uid == it.value.world.uid }.keys.forEach { name ->
-            val client = clients[name] ?: return
-            client.stop()
-            clients -= name
-            arenas -= name
+            val client = clients[name] ?: return@forEach
+            if (event.newState in arrayOf(GameState.starting, GameState.playing)) {
+                runTaskLater(20) {
+                    client.player?.teleport(event.arena.waitingLocation)
+                }
+            } else {
+                client.stop()
+                clients -= name
+                arenas -= name
+            }
         }
     }
 }

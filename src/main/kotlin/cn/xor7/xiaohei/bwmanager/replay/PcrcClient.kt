@@ -1,6 +1,7 @@
 package cn.xor7.xiaohei.bwmanager.replay
 
 import org.bukkit.Bukkit
+import org.bukkit.entity.Player
 
 val clients = mutableListOf<PcrcClient>()
 
@@ -12,6 +13,7 @@ class PcrcClient(private val name: String) {
     private val workingDir = pcrcFolder.resolve(name)
     private val pcrcProcess: ProcessController
     val playerName = "_r_$name"
+    val player: Player? get() = Bukkit.getPlayerExact(playerName)
 
     init {
         val configFile = workingDir.resolve("config.json")
