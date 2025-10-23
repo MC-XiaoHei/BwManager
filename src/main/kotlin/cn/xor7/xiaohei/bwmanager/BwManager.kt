@@ -4,6 +4,7 @@ import cn.xor7.xiaohei.bwmanager.commands.ConfigCommand
 import cn.xor7.xiaohei.bwmanager.commands.GameCommand
 import cn.xor7.xiaohei.bwmanager.commands.SpectatorCommand
 import cn.xor7.xiaohei.bwmanager.commands.TeamCommand
+import cn.xor7.xiaohei.bwmanager.listeners.GameListener
 import cn.xor7.xiaohei.bwmanager.listeners.GlobalListener
 import cn.xor7.xiaohei.bwmanager.listeners.ReplayListener
 import cn.xor7.xiaohei.bwmanager.party.TeamInfo
@@ -27,16 +28,17 @@ class BwManager : JavaPlugin() {
         parties = Parties.getApi()
         bedwars = Bukkit.getServicesManager().getRegistration(BedWars::class.java).getProvider()
         TeamInfo.loadTeamInfo()
-        registerListener(GlobalListener)
-        registerListener(ReplayListener)
+        GlobalListener.register()
+        ReplayListener.register()
+        GameListener.register()
         TeamCommand.register("bwteam")
         ConfigCommand.register("bwcfg")
         GameCommand.register("bwgame")
         SpectatorCommand.register("bwspe")
     }
 
-    private fun registerListener(listener: Listener) {
-        Bukkit.getPluginManager().registerEvents(listener, this)
+    private fun Listener.register() {
+        Bukkit.getPluginManager().registerEvents(this, this@BwManager)
     }
 
     private fun CommandExecutor.register(name: String) {
