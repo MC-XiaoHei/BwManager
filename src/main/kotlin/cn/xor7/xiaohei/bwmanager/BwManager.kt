@@ -28,9 +28,17 @@ class BwManager : JavaPlugin() {
         parties = Parties.getApi()
         bedwars = Bukkit.getServicesManager().getRegistration(BedWars::class.java).getProvider()
         TeamInfo.loadTeamInfo()
+        registerListeners()
+        registerCommands()
+    }
+
+    private fun registerListeners() {
         GlobalListener.register()
         ReplayListener.register()
         GameListener.register()
+    }
+
+    private fun registerCommands() {
         TeamCommand.register("bwteam")
         ConfigCommand.register("bwcfg")
         GameCommand.register("bwgame")
