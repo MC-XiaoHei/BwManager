@@ -18,15 +18,13 @@ import org.bukkit.command.CommandExecutor
 import org.bukkit.event.Listener
 import org.bukkit.plugin.java.JavaPlugin
 
-lateinit var parties: PartiesAPI
-lateinit var bedwars: BedWars
+val parties: PartiesAPI by lazy { Parties.getApi() }
+val bedwars: BedWars by lazy { Bukkit.getServicesManager().getRegistration(BedWars::class.java).getProvider() }
 lateinit var plugin: BwManager
 
 class BwManager : JavaPlugin() {
     override fun onEnable() {
         plugin = this
-        parties = Parties.getApi()
-        bedwars = Bukkit.getServicesManager().getRegistration(BedWars::class.java).getProvider()
         TeamInfo.loadTeamInfo()
         registerListeners()
         registerCommands()
