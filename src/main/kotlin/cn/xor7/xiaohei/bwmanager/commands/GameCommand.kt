@@ -7,6 +7,7 @@ import cn.xor7.xiaohei.bwmanager.party.TeamInfo
 import cn.xor7.xiaohei.bwmanager.party.TeamInfo.playerNumInTeam
 import cn.xor7.xiaohei.bwmanager.party.TeamMember
 import cn.xor7.xiaohei.bwmanager.replay.PcrcClient
+import cn.xor7.xiaohei.bwmanager.runTaskLater
 import com.andrei1058.bedwars.api.arena.GameState
 import com.andrei1058.bedwars.api.arena.IArena
 import org.bukkit.command.Command
@@ -98,6 +99,9 @@ object GameCommand : CommandExecutor {
         ReplayListener.arenas[client.playerName] = arena
         ReplayListener.clients[client.playerName] = client
         client.start()
+        runTaskLater(40L) {
+            arena.changeStatus(GameState.starting)
+        }
     }
 
     private fun processStop(
