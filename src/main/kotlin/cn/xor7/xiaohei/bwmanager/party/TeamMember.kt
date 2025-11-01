@@ -4,11 +4,11 @@ import cn.xor7.xiaohei.bwmanager.parties
 import cn.xor7.xiaohei.bwmanager.plugin
 import com.alessiodp.parties.api.interfaces.PartyPlayer
 import org.bukkit.entity.Player
-import java.util.UUID
+import java.util.*
 
 data class TeamMember(val uuid: UUID, val name: String) {
     constructor(dataStr: String) : this(
-        UUID.fromString(dataStr.split("/")[1]),
+        getUuidFromDataStr(dataStr),
         dataStr.split("/")[0],
     )
 
@@ -19,5 +19,14 @@ data class TeamMember(val uuid: UUID, val name: String) {
         "§a${name}"
     } else {
         "§c${name}"
+    }
+}
+
+private fun getUuidFromDataStr(dataStr: String): UUID {
+    val split = dataStr.split("/")
+    return if (split.size == 1) {
+        UUID.nameUUIDFromBytes("OfflinePlayer:${split[0]}".toByteArray())
+    } else {
+        UUID.fromString(split[1])
     }
 }

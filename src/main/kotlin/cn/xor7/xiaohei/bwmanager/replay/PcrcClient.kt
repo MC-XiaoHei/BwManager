@@ -5,11 +5,12 @@ import org.bukkit.entity.Player
 
 val clients = mutableListOf<PcrcClient>()
 
+private val serverPort = Bukkit.getServer().port
+private val pcrcFolder = Bukkit.getServer()
+    .worldContainer
+    .resolve("pcrc")
+
 class PcrcClient(private val name: String) {
-    private val serverPort = Bukkit.getServer().port
-    private val pcrcFolder = Bukkit.getServer()
-        .worldContainer
-        .resolve("pcrc")
     private val workingDir = pcrcFolder.resolve(name)
     private val pcrcProcess: ProcessController
     val playerName = "_r_$name"
@@ -17,10 +18,11 @@ class PcrcClient(private val name: String) {
 
     init {
         val configFile = workingDir.resolve("config.json")
-        if (!configFile.exists()) {
-            configFile.parentFile.mkdirs()
-            configFile.writeText(buildConfigJson())
-        }
+        if (configFile.exists()) configFile.delete()
+
+        configFile.parentFile.mkdirs()
+        configFile.writeText(buildConfigJson())
+
         pcrcProcess = startProcess(
             exePath = pcrcFolder.resolve("PCRC.exe").absolutePath,
             name = name,

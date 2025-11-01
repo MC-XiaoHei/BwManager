@@ -60,10 +60,6 @@ object GameCommand : CommandExecutor {
             sender.sendMessage("§c竞技场 $arenaName 已经在游戏中")
             return
         }
-        if (teamIds.size != arena.maxPlayers / arena.maxInTeam) {
-            sender.sendMessage("§c当前竞技场 $arenaName 需要 ${arena.maxInTeam} 支队伍，但只提供了 ${teamIds.size} 支")
-            return
-        }
         if (playerNumInTeam > arena.maxInTeam) {
             sender.sendMessage("§c当前竞技场 $arenaName 每队最多 ${arena.maxInTeam} 人，但配置中每队有 $playerNumInTeam 人")
             return
