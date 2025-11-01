@@ -2,6 +2,7 @@ package cn.xor7.xiaohei.bwmanager.replay
 
 import org.bukkit.Bukkit
 import org.bukkit.entity.Player
+import java.time.Instant
 
 val clients = mutableListOf<PcrcClient>()
 
@@ -11,7 +12,7 @@ private val pcrcFolder = Bukkit.getServer()
     .resolve("pcrc")
 
 class PcrcClient(private val name: String) {
-    private val workingDir = pcrcFolder.resolve(name)
+    private val workingDir = pcrcFolder.resolve("$name@${Instant.now()}")
     private val pcrcProcess: ProcessController
     val playerName = "_r_$name"
     val player: Player? get() = Bukkit.getPlayerExact(playerName)
