@@ -10,6 +10,7 @@ object TeamInfo {
     fun loadTeamInfo() = CSVReader(FileReader("team-info.csv")).use { reader ->
         val header = reader.readNext()
         playerNumInTeam = (header?.size ?: 1) - 1
+        teamInfo.clear()
 
         val rows = reader.readAll()
         for (row in rows) {
