@@ -97,6 +97,7 @@ object GameCommand : CommandExecutor {
         client.start()
         runTaskLater(40L) {
             arena.changeStatus(GameState.starting)
+            arena.startingTask?.countdown = 5
         }
     }
 
