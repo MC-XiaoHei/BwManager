@@ -1,3 +1,3 @@
 # BwManager
 
-archived
+this project already archived
